@@ -1,0 +1,10 @@
+.weekWeater {
+  height: 30vh;
+  overflow-y: scroll;
+  .icona {
+    width: 50px;
+  }
+  .weeksDay {
+    background: linear-gradient(270deg, rgba(156, 165, 242, 1) 0%, rgba(138, 246, 130, 1) 69%);
+  }
+}

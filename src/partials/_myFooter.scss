@@ -1,0 +1,12 @@
+footer {
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg, rgba(195, 34, 34, 1) 0%, rgba(253, 187, 45, 1) 100%);
+  p {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: 500;
+  }
+}
