@@ -8,8 +8,8 @@ const TodayWeater = ({ meteo }) => {
         <Col xs={5}>
           <Row>
             <img
-              className="w-100"
-              src={`${process.env.PUBLIC_URL}/assets/icons/${meteo?.weather[0]?.icon}.png`}
+              className="w-100 iconW"
+              src={`/assets/icons/${meteo?.weather[0]?.icon}.png`}
               alt="weather icon"
             />
           </Row>

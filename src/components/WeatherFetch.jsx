@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Spinner, Alert } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import Grafico from "./Grafico";
 import TodayWeater from "./TodayWeater";
 import WeekWeater from "./WeekWeater";
 // const call5day = "api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}";
@@ -11,6 +12,9 @@ const WeatherFetch = () => {
   const [fiveDayMeteo, setFiveDayMeteo] = useState(null);
   const [lat, setLat] = useState(45.6944947);
   const [lon, setLon] = useState(9.6698727);
+  const [load, setLoad] = useState(true);
+  const [error, setError] = useState(false);
+  const [errorMes, setErrorMes] = useState("");
 
   const fetchMeteo = async () => {
     try {
@@ -19,13 +23,18 @@ const WeatherFetch = () => {
       );
       if (response.ok) {
         const data = await response.json();
-        // console.log(data);
+        console.log(data);
         setMeteoToday(data);
+        setLoad(false);
       } else {
         console.log("qualcosa è andato storto");
+        setLoad(false);
+        setErrorMes("There was a problem" + response.status);
       }
     } catch (error) {
       console.log(error);
+      setLoad(false);
+      setErrorMes("There was a problem" + error.message);
     }
   };
 
@@ -37,13 +46,18 @@ const WeatherFetch = () => {
       if (response.ok) {
         const data = await response.json();
         // console.log("5day", data);
-        // console.log(data.list);
+        console.log(data.list);
         setFiveDayMeteo(data.list);
+        setLoad(false);
       } else {
         console.log("qualcosa è andato storto");
+        setLoad(false);
+        setErrorMes("There was a problem" + response.status);
       }
     } catch (error) {
       console.log(error);
+      setLoad(false);
+      setErrorMes("There was a problem" + error.message);
     }
   };
 
@@ -84,14 +98,23 @@ const WeatherFetch = () => {
   }, [lat, lon]);
   return (
     <>
+      {error && (
+        <Alert variant="danger" bg="danger">
+          {errorMes}
+        </Alert>
+      )}
       {meteoToday && (
         <h2 className="mt-2">
           Weather at: <span>{meteoToday.name}</span> - {new Date().toLocaleDateString()}
         </h2>
       )}
+      {load && <Spinner animation="border" variant="secondary" />}
       <Row className="mt-4 row-cols-1 row-cols-md-2">
         <Col>{meteoToday && <TodayWeater meteo={meteoToday} />}</Col>
         <Col>{fiveDayMeteo && <WeekWeater fiveMeteo={fiveDayMeteo} />}</Col>
+      </Row>
+      <Row>
+        <Col>{fiveDayMeteo && <Grafico fiveMeteo={fiveDayMeteo} />}</Col>
       </Row>
     </>
   );
