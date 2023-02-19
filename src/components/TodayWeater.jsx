@@ -12,8 +12,8 @@ const TodayWeater = ({ meteo }) => {
             <h2 className="">Today: </h2>
           </Col>{" "}
           <Col>
-            <Link to="/details">
-              <span className="searchBtn">More details</span>
+            <Link to="/details" className="text-decoration-none">
+              <span className="detailshBtn">More details</span>
             </Link>
           </Col>
         </Row>
