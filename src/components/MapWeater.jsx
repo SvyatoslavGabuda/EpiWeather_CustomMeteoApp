@@ -27,7 +27,7 @@ const MapWeater = () => {
 
   return (
     <>
-      <h2>map</h2>
+      <h2>Cooming soon...</h2>
       <img src={map} alt="" />
     </>
   );

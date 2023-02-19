@@ -1,6 +1,8 @@
 import { Row, Col } from "react-bootstrap";
+import { millisecondsToHours } from "date-fns";
 
 const TodayWeater = ({ meteo }) => {
+  const sunrise = millisecondsToHours(meteo.sys.sunrise);
   return (
     <>
       <Row className="justify-content-center align-items-center h-100 ">
@@ -22,14 +24,18 @@ const TodayWeater = ({ meteo }) => {
             <p className="temp">
               Temperature:
               <strong>
-                <span> {Math.floor(meteo.main.temp - 273.15)}°</span>
+                <span>
+                  {" "}
+                  <i className="bi bi-thermometer-half"></i>
+                  {Math.floor(meteo.main.temp - 273.15)}°C
+                </span>
               </strong>
             </p>
             <p className="temp">
               Pressure: <strong>{meteo?.main?.pressure}(Pa)</strong>
             </p>
             <p className="temp">
-              Humidity: <strong>{meteo?.main?.humidity}%</strong>
+              Humidity: <strong>{meteo.main.humidity}%</strong>
             </p>
           </Row>
         </Col>

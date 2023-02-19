@@ -12,8 +12,8 @@ const WeekWeater = ({ fiveMeteo }) => {
               src={`${process.env.PUBLIC_URL}/assets/icons/${el.weather[0].icon}.png`}
               alt="weather icon"
             />{" "}
-            - {format(new Date(el.dt_txt), "d (E) MMM k:mm")} - {Math.floor(el.main.temp - 273.15)}°
-            - {el.weather[0].description}
+            - {format(new Date(el.dt_txt), "d (E) MMM k:mm")} - {Math.floor(el.main.temp - 273.15)}
+            °C - {el.weather[0].description}
           </ListGroup.Item>
         ))}
       </ListGroup>

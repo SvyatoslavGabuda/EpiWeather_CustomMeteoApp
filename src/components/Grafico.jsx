@@ -11,7 +11,6 @@ import {
 import format from "date-fns/format";
 const Grafico = (props) => {
   const newArr = props.fiveMeteo;
-  console.log(newArr);
 
   const serve = newArr.map((el) => {
     return {
@@ -19,7 +18,7 @@ const Grafico = (props) => {
       temp: Math.floor(el.main.temp - 273.15),
     };
   });
-  console.log(serve);
+  //   console.log(serve);
 
   return (
     <>
@@ -37,9 +36,13 @@ const Grafico = (props) => {
           }}
         >
           <Area type="monotone" dataKey="temp" stroke="#ccc" fill="#000000" />
-          <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-          <XAxis dataKey="time" />
-          <YAxis />
+          <CartesianGrid stroke="#ccc" strokeDasharray="5 15" vertical="false" />
+          <XAxis stroke="#000000" dataKey="time" />
+
+          <YAxis
+            stroke="#000000"
+            label={{ value: "Temperature in °C", angle: -90, position: "Left" }}
+          />
           <Tooltip />
         </AreaChart>
       </ResponsiveContainer>
