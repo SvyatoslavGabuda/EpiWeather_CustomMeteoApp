@@ -22,7 +22,7 @@ const Grafico = (props) => {
 
   return (
     <>
-      <h2>Temperature in the next five days:</h2>
+      <h2>Temperature {props.period}:</h2>
       <ResponsiveContainer width="100%" height={230}>
         <AreaChart
           width={500}

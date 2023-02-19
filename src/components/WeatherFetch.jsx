@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Col, Row, Spinner, Alert } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Grafico from "./Grafico";
 import TodayWeater from "./TodayWeater";
 import WeekWeater from "./WeekWeater";
@@ -15,6 +15,8 @@ const WeatherFetch = () => {
   const [load, setLoad] = useState(true);
   const [error, setError] = useState(false);
   const [errorMes, setErrorMes] = useState("");
+  const dispatch = useDispatch();
+  const dispatch2 = useDispatch();
 
   const fetchMeteo = async () => {
     try {
@@ -26,6 +28,11 @@ const WeatherFetch = () => {
         console.log(data);
         setMeteoToday(data);
         setLoad(false);
+
+        dispatch({
+          type: "SAVE_METEO_ONE",
+          payload: data,
+        });
       } else {
         console.log("qualcosa è andato storto");
         setLoad(false);
@@ -49,6 +56,11 @@ const WeatherFetch = () => {
         console.log(data.list);
         setFiveDayMeteo(data.list);
         setLoad(false);
+
+        dispatch2({
+          type: "SAVE_METEO_FIVE",
+          payload: data.list,
+        });
       } else {
         console.log("qualcosa è andato storto");
         setLoad(false);
@@ -114,7 +126,9 @@ const WeatherFetch = () => {
         <Col>{fiveDayMeteo && <WeekWeater fiveMeteo={fiveDayMeteo} />}</Col>
       </Row>
       <Row>
-        <Col>{fiveDayMeteo && <Grafico fiveMeteo={fiveDayMeteo} />}</Col>
+        <Col>
+          {fiveDayMeteo && <Grafico period="in the next five days" fiveMeteo={fiveDayMeteo} />}
+        </Col>
       </Row>
     </>
   );

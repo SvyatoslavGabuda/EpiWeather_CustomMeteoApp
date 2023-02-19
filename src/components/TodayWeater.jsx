@@ -1,12 +1,22 @@
 import { Row, Col } from "react-bootstrap";
 import { millisecondsToHours } from "date-fns";
+import { Link } from "react-router-dom";
 
 const TodayWeater = ({ meteo }) => {
   const sunrise = millisecondsToHours(meteo.sys.sunrise);
   return (
     <>
       <Row className="justify-content-center align-items-center h-100 ">
-        <h2 className="align-self-start">Today:</h2>
+        <Row className="justify-content-between">
+          <Col>
+            <h2 className="">Today: </h2>
+          </Col>{" "}
+          <Col>
+            <Link to="/details">
+              <span className="searchBtn">More details</span>
+            </Link>
+          </Col>
+        </Row>
         <Col xs={5}>
           <Row>
             <img

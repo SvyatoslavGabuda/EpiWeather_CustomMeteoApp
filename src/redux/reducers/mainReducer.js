@@ -1,6 +1,8 @@
 const initialState = {
   city: "",
   country: "",
+  meteoOneDay: {},
+  meteoFiveDays: [],
 };
 
 const mainReducer = (state = initialState, action) => {
@@ -14,6 +16,16 @@ const mainReducer = (state = initialState, action) => {
       return {
         ...state,
         country: action.payload,
+      };
+    case "SAVE_METEO_ONE":
+      return {
+        ...state,
+        meteoOneDay: action.payload,
+      };
+    case "SAVE_METEO_FIVE":
+      return {
+        ...state,
+        meteoFiveDays: action.payload,
       };
     default:
       return state;
