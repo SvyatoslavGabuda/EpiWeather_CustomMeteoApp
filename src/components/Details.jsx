@@ -82,7 +82,7 @@ const Details = () => {
           <Row>
             <Col>
               {meteoFive && (
-                <Grafico period="in the next 24 hours" fiveMeteo={meteoFive.slice(0, 5)} />
+                <Grafico period="in the next 24 hours" fiveMeteo={meteoFive.slice(0, 9)} />
               )}
             </Col>
           </Row>
