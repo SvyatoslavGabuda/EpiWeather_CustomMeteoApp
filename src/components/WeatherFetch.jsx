@@ -86,6 +86,9 @@ const WeatherFetch = () => {
         setLon(data[0].lon);
       } else {
         console.log("errore");
+        alert(
+          "You didn't insert the CITY NAME... or... U just cliccked SEARCH?? didn't you LIDIA????"
+        );
       }
     } catch (error) {
       console.log(error);

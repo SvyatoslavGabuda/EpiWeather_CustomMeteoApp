@@ -3,9 +3,20 @@ import { useSelector } from "react-redux";
 import TodayWeater from "./TodayWeater";
 import WeekWeater from "./WeekWeater";
 import Grafico from "./Grafico";
+import { intervalToDuration } from "date-fns";
+import { useEffect } from "react";
 const Details = () => {
   const meteoOne = useSelector((state) => state.meteoOneDay);
   const meteoFive = useSelector((state) => state.meteoFiveDays);
+  //   let sunRise = [];
+  //   if (meteoFive.length > 0) {
+  //     sunRise = intervalToDuration({ start: 0, end: meteoOne.sys.sunrise });
+  //   }
+  //   useEffect(() => {
+  //     if (meteoFive.length > 0) {
+  //       sunRise = intervalToDuration({ start: 0, end: meteoOne.sys.sunrise });
+  //     }
+  //   }, [meteoOne, meteoFive]);
 
   return (
     <>
@@ -53,16 +64,17 @@ const Details = () => {
               <Col>
                 <p>
                   {" "}
-                  Max Temperature: <strong>{Math.floor(meteoOne.main.temp - 273.15)}°C</strong>
+                  Max Temperature: <strong>{Math.floor(meteoOne.main.temp_max - 273.15)}°C</strong>
                 </p>
                 <p>
                   {" "}
-                  Min Temperature: <strong>{Math.floor(meteoOne.main.temp - 273.15)}°C</strong>
+                  Min Temperature: <strong>{Math.floor(meteoOne.main.temp_min - 273.15)}°C</strong>
                 </p>
               </Col>
               <Col>
                 <p>
-                  SunRise: <strong>{meteoOne.sys.sunrise}</strong>
+                  SunRise:
+                  <strong>{meteoOne.sys.sunrise}</strong>
                 </p>
                 <p>
                   SunSet: <strong>{meteoOne.sys.sunset}</strong>
