@@ -5,6 +5,7 @@ import WeekWeater from "./WeekWeater";
 import Grafico from "./Grafico";
 import { intervalToDuration } from "date-fns";
 import { useEffect } from "react";
+import format from "date-fns/format";
 const Details = () => {
   const meteoOne = useSelector((state) => state.meteoOneDay);
   const meteoFive = useSelector((state) => state.meteoFiveDays);
@@ -74,18 +75,18 @@ const Details = () => {
               <Col>
                 <p>
                   SunRise:
-                  <strong>{meteoOne.sys.sunrise}</strong>
+                  <strong> {format(new Date(meteoOne.sys.sunrise * 1000), "kk:mm")}</strong>
                 </p>
                 <p>
-                  SunSet: <strong>{meteoOne.sys.sunset}</strong>
+                  SunSet: <strong> {format(new Date(meteoOne.sys.sunset * 100), "kk:mm")}</strong>
                 </p>
               </Col>
               <Col>
                 <p>
-                  Wind Direction: <strong>{meteoOne.wind.deg}</strong>
+                  Wind Direction: <strong>{meteoOne.wind.deg}°</strong>
                 </p>
                 <p>
-                  Wind speed: <strong>{meteoOne.wind.speed}</strong>
+                  Wind speed: <strong>{meteoOne.wind.speed} km/h</strong>
                 </p>
               </Col>
             </Row>
