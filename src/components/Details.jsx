@@ -78,7 +78,7 @@ const Details = () => {
                   <strong> {format(new Date(meteoOne.sys.sunrise * 1000), "kk:mm")}</strong>
                 </p>
                 <p>
-                  SunSet: <strong> {format(new Date(meteoOne.sys.sunset * 100), "kk:mm")}</strong>
+                  SunSet: <strong> {format(new Date(meteoOne.sys.sunset * 1000), "kk:mm")}</strong>
                 </p>
               </Col>
               <Col>
